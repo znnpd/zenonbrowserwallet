@@ -20,9 +20,9 @@ Development will happen under **permissive open source licensing**, to be determ
 ## Impact
 _Why and how would your project idea help Zenon Network to grow,  increase its reach or make it more accesible. What’s the benefit for the community. What features would your project provide that are not present yet._</br>
  
-Web3 applications based on smart contracts will be the foundation of a vibrant Zenon ecosystem with plenty of innovative projects. ZenonBrowserWallet will play an important role to support the growth of Zenon Network in the following areas:
-* For Web3 application developers ZenonBrowserWallet will be an easy-to-integrate tool to provide their users a secure way to interact with Zenon Network
-* For Web3 application users ZenonBrowserWallet will provide one single tool with a common user experience accross multiple applications
+Web3 applications based on smart contracts will be the foundation of a vibrant Zenon ecosystem with plenty of innovative projects. ZenonBrowserWallet will be a fundamential piece which boosts development of Web3 applications and therefore plays an important role for the growth of Zenon Network.  The target audience will benefit in the following way:
+* For Web3 application developers ZenonBrowserWallet will be an easy-to-integrate tool to provide a secure way to interact with Zenon Network to their users. It enables faster development by providing a standard tool with defined interaction protocol.
+* For Web3 application users ZenonBrowserWallet will provide one single tool with a common user experience accross multiple Web3 applications.
 
 ## Status
 _Give a description of the current progress of your project. Also add links to code repositories, articles, websites or other resources that you have been working on, that are relevant to this project._
