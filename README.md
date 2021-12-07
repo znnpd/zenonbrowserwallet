@@ -6,7 +6,7 @@ Leightweight browser extension wallet for Zenon NoM similar to metamask. Real pr
 ## Ambitions
 _What is the goal that you want to achieve with your project in the next 6 months. What are the features you want to implement, studies you want to carry out, areas you want to expand to in that timeframe._</br>
 
-ZenonBrowserWallet aims to be the standard tool to connect users of Web3 applications with the Zenon Network of Momentum. 
+ZenonBrowserWallet aims to be the standard tool to connect users of Web3 applications with the Zenon Network of Momentum. Development will happen under **permissive open source licensing**, to be determined which license exactly will be chosen.
 
 Until mid 2022 we focus on the following features implemented as **MVP chrome extension**:
 * Import existing accounts or create new accounts
@@ -15,7 +15,7 @@ Until mid 2022 we focus on the following features implemented as **MVP chrome ex
 * Send/receive transactions
 * Show balance of all coins
 
-Development will happen under **permissive open source licensing**, to be determined which license exactly will be chosen.
+Post-MVP evolution will be defined based on community feedback and may include integration with other warpdrive projects like IAMZ to enable seamless authentication, etc.
 
 ## Impact
 _Why and how would your project idea help Zenon Network to grow,  increase its reach or make it more accesible. What’s the benefit for the community. What features would your project provide that are not present yet._</br>
