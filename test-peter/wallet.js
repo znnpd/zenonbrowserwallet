@@ -1,6 +1,8 @@
-const crypto = require("crypto");
+const znn = require("../../znn.js/src/")
+/*const crypto = require("crypto");
 const bip39 = require("bip39");
 const {getPublicKey, derivePath} = require("ed25519-hd-key");
+const {bech32} = require("bech32");
 
 class KeyStore {
 
@@ -11,9 +13,7 @@ class KeyStore {
         const {key: priv} = derivePath(`m/44'/73404'/0'`, this.seed);
         this.keyPair = new KeyPair(priv);
         
-    }
-
-      
+    } 
 }
 
 class KeyPair {
@@ -23,14 +23,17 @@ class KeyPair {
     }
 }
 
+*/
+
 function createWallet() {
-    const keystore = new KeyStore()
+    /*const keystore = new KeyStore();
     keystore.createNewKeystore();
     console.log(keystore.entropy);
     console.log(keystore.mnemonic);
     console.log(keystore.seed);
-    console.log(keystore.privateKey);
-    console.log(keystore.publicKey);
+    console.log(keystore.keyPair.privateKey);
+    console.log(keystore.keyPair.publicKey);*/
+
 }
 
 
