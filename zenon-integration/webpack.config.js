@@ -59,5 +59,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             process: 'process/browser',
         }),
+        new webpack.IgnorePlugin({ 
+            resourceRegExp: /^\.\/wordlists\/(?!english)/,
+            contextRegExp: /bip39\/src$/
+        }),
     ],
 };
