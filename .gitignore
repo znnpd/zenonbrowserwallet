@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# .env in folder zenon-integration/src
-/zenon-integration/src/.env
+# .env in folder zenon_integration/src
+/zenon_integration/src/.env
 
 # dependencies
 /node_modules
