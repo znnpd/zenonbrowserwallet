@@ -9,14 +9,24 @@
         <input type = "button" id="button"> 
         <script>
             document.getElementById('button').onclick = async function () {
+                var wallet = localStorage.getItem('wallet');
+                if (!wallet) {
+                    try {
+                        var testPassword = 'password';
+                        var testMnemonic = 'taste solve night end concert wait shove tooth estate bone sentence high drop canvas prefer library skate cube online chest lottery solution magic bicycle';
+                        //await zenon.createNewWallet(testPassword);
+                        await zenon.importExistingWallet(testMnemonic, testPassword);
+                        wallet = localStorage.getItem('wallet');
+                    } catch (error) {
+                        console.error("Creation of wallet failed!");
+                    }
+                } 
+                wallet = JSON.parse(wallet);
                 try {
-                    var testPassword = 'password';
-                    var testMnemonic = 'movie pitch own dinosaur carry suspect bacon sadness narrow wide lion interest reunion gloom mail torch sorry manual social already ecology remain until cricket';
-                    //await zenon.createNewWallet(testPassword);
-                    await zenon.importExistingWallet(testMnemonic, testPassword);
-                    console.log(localStorage.getItem('wallet'));
+                    var amount = await zenon.getBalance(wallet.baseAddress);
+                    console.log(amount);   
                 } catch (error) {
-                    console.error("Creation of wallet failed!");
+                    console.error("Reading balance from chain failed!");
                 }
             }
         </script> 
