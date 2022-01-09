@@ -4,30 +4,62 @@
         <script src="../dist/bundle.js"></script>
     </head>  
     <body>
-        <p>Click the following button to see the function in action</p>  
-        <!--input type = "button" onclick = "walletBundle.createWallet() "--> 
-        <input type = "button" id="button"> 
+        <div>
+            <input type="checkbox" id="create" value="no">  Create new wallet?
+        </div> 
+        </br>
+        <div>
+            <textarea id="mnemonic" rows="4" cols="50" placeholder="Put your mnemonic here to create a wallet in localstorage"></textarea>
+        </div> 
+        </br>
+        <div>
+            <input type="text" id="password" value="6BzFG!5iLux12Ahge"> Password
+        </div>
+        </br>
+        <div>
+            <input type="text" id="addressTo" value="z1qpdlnkzaumkaj2wx8h3ecnak5hy35200sqlqu6" disabled=true> Recipient of test transactions
+        </div>
+        </br>
+        <div>
+            <input type = "button" id="button" value="Start testing...">     
+        </div>
         <script>
+            // Use wallet from localStorage or import one based on mnemonic
+            var wallet = localStorage.getItem('wallet');
+            if (wallet) {
+                document.getElementById('mnemonic').placeholder="Wallet found in localstorage, put mnemonic here to overwrite";
+            }
+
             document.getElementById('button').onclick = async function () {
-                var wallet = localStorage.getItem('wallet');
-                if (!wallet) {
-                    try {
-                        var testPassword = 'password';
-                        var testMnemonic = 'taste solve night end concert wait shove tooth estate bone sentence high drop canvas prefer library skate cube online chest lottery solution magic bicycle';
-                        //await zenon.createNewWallet(testPassword);
-                        await zenon.importExistingWallet(testMnemonic, testPassword);
-                        wallet = localStorage.getItem('wallet');
-                    } catch (error) {
-                        console.error("Creation of wallet failed!");
-                    }
-                } 
-                wallet = JSON.parse(wallet);
-                try {
-                    var amount = await zenon.getBalance(wallet.baseAddress);
-                    console.log(amount);   
-                } catch (error) {
-                    console.error("Reading balance from chain failed!");
+                if (document.getElementById('create').checked == true) {
+                    // Create new wallet
+                    await zenon.createNewWallet(document.getElementById('password').value);
+                } else if (document.getElementById('mnemonic').value) {
+                    // import existing value based on mnemonic
+                    await zenon.importExistingWallet(document.getElementById('mnemonic').value, document.getElementById('password').value);
                 }
+                wallet = JSON.parse(localStorage.getItem('wallet'));
+
+                // Get balance of address
+                zenon.getAccountInfo(wallet.baseAddress).then((result) => {
+                    //console.log(result);
+                }).catch((error) => {
+                    console.error("ERROR reading balance from chain!");
+                    console.error(error);
+                });
+                
+                // Check if PoW is required
+                var addressTo = document.getElementById('addressTo').value;
+                var password = document.getElementById('password').value;
+                const amount = 1000000; // 100000000 = 1.0
+                const tokenStandardZnn = 'zts1znnxxxxxxxxxxxxx9z4ulx';
+                const tokenStandardQsr = 'zts1qsrxxxxxxxxxxxxxmrhjll';
+                zenon.sendTransaction(wallet.baseAddress, addressTo, amount, tokenStandardZnn, password).then((result) => {
+                    console.log('Transaction successfully sent!')
+                }).catch((error) => {
+                    console.error("ERROR sending transaction!");
+                    console.error(error);
+                }) ;
             }
         </script> 
     </body>  
