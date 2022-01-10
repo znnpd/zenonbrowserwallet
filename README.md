@@ -7,6 +7,8 @@ Leightweight browser extension wallet for Zenon NoM similar to metamask. Real pr
 
 ZenonBrowserWallet aims to be the standard tool to connect users of Web3 applications with the Zenon Network of Momentum. Development will happen under **MIT license** which is in category permissive open source.
 
+**NOTE** During development phase we keep work in a private repo. All code will be made public available at the latest afer go-live.
+
 Until mid 2022 we focus on the following features implemented as **chrome extension MVP**:
 * Import existing accounts or create new accounts
 * Sign transactions from web3 websites
