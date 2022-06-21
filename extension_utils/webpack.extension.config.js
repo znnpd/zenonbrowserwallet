@@ -152,6 +152,21 @@ var options = {
             );
           },
         },
+        {
+          from: './src/icons/icon16.png',
+          to: '../extension_build',
+          force: true,
+        },
+        {
+          from: './src/icons/icon48.png',
+          to: '../extension_build',
+          force: true,
+        },
+        {
+          from: './src/icons/icon128.png',
+          to: '../extension_build',
+          force: true,
+        }
       ],
     }),
     new HtmlWebpackPlugin({
