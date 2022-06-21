@@ -1,65 +1,52 @@
 # ZenonBrowserWallet
-Leightweight browser extension wallet for Zenon NoM similar to metamask. Real project name to be determined later by community.
+Lightweight browser extension wallet for Zenon NoM similar to metamask. 
 
-# Warpdrive submission information
+## Please note:
+* Extension not published in chrome webstore, only to test on localhost
+* Use together with Zenon-Web3Site
+* Public node of deenutz is used
+* Only for fused accounts
+* .env files for tests
 
-## Ambitions
+# Warpdrive
+See [here](./docs/warpdrive.md) for original warpdrive submission.
 
-ZenonBrowserWallet aims to be the standard tool to connect users of Web3 applications with the Zenon Network of Momentum. Development will happen under **MIT license** which is in category permissive open source.
+# Installation
 
-**NOTE** During development phase we keep work in a private repo. All code will be made public available at the latest afer go-live.
+## Prerequisits
+* Latest version of google chrome browser (at least >= version 102)
+* NodeJS 
 
-Until mid 2022 we focus on the following features implemented as **chrome extension MVP**:
-* Import existing accounts or create new accounts
-* Sign transactions from web3 websites
-* Define interaction protocol between websites and ZenonBrowserWallet
-* Send/receive transactions
-* Show balance of all coins
-* Fuse plasma
-* Transaction overview
+## Setup
+* `npm run build` creates a react webapp for local UI testing (normal UI, cannot be used as an extension)
+* `npm run local` starts the local webpack dev server for UI testing in browser (not as extension)
+* `npm run local_extension` creates `extension_build` directory and runs a webpack server (which is not really needed). The directory can be loaded by chrome extension to test it locally
 
-Post-MVP evolution will be defined based on community feedback and may include things like:
-* multiple browser support
-* integration with other warpdrive projects like IAMZ to enable seamless authentication
-* etc.
 
-## Impact
-Web3 applications based on smart contracts will be the foundation of a vibrant Zenon ecosystem with plenty of innovative projects. ZenonBrowserWallet will be a fundamential piece which boosts development of Web3 applications and therefore plays an important role for the growth of Zenon Network.  The target audience will benefit in the following way:
-* For Web3 application developers ZenonBrowserWallet will be an easy-to-integrate tool to provide their users a secure way to interact with Zenon Network. It enables faster development by providing a standard tool with defined interaction protocol.
-* For Web3 application users ZenonBrowserWallet will provide one single tool with a common user experience accross multiple Web3 applications.
-* For Zenon users the ZenonBrowserWallet will be a lightweight wallet providing the main basic functionality to interact with Zenon Network.
+## Extension components and message flows to invoke extension from website
+In order to send messages from any website to a chrome extension the following components are needed in the chrome extension ecosystem:
 
-## Status
-We are currently working on two main topics:
-* Prototype UI development (with mocked network interaction)
-* Technical analysis and some playground implementations of various aspects, with the following outcome (as by now):
-  * Dart SDK must be adjusted because quite a few components cannot be used in web context (e.g. wallets as files, websocket library, dart:ffi and dart:io not supported, etc.)
-  * We will use React to develop the extension and dart2js to generate javascript code
-  * C-Code for PoW and Argon2 to be released by Zenon developers is a prerequisit to compile for WASM
+### Webapp for extension popup (plain html/js or ReactJS app)
+* Extension UI
 
-## Stepstones
-The following milestones define the project progress for MVP:
+### Content script
+* Injected in any website (based on matching rules)
+* Has access to website DOM and can listen to `postMessage()` from website
+* Can communicate with extension and background script
 
-### Milestone 1
-* Chrome extension prototype with all UI elements for functionalities defined above
-* Dart SDK adjustments to create javascript code which works in web context (without C-Code for PoW and Argon2)
+### Background script
+* Always-running script for extension
+* Can communicate with extension and content script
 
-### Milestone 2
-* C-Code compilation and integration in javascript code (assuming c-code is open-sourced)
-* Integration of javascript code into UI prototype
+## Message Flow
+1. Website (index_website.html) posts a message using `window.postMessage()`
+2. Content script has an event listener for the message event
+3. Content script sends a message using `chrome.runtime.sendMessage()` (request/response) or `chrome.runtime.connect()` (long-living connection)
+4. Extension popup app (i.e. ReactJS) and background script add a message listener using `chrome.runtime.onMessage.addListener()` or in `chrome.runtime.connect()` to receive the message. **NOTE**: In functional ReactJS the `useEffect()` mechanism must be used to register the listener! 
 
-### Milestone 3
-* Interaction protocol specification (between web3 application and wallet)
-* Comprehensive testing
 
-### Milestone 4
-* Penetration testing by community and/or professional pentest companies
-
-## Uniqueness
-We are not aware of any similar initiatives as of today.
-
-## Expenses
-For development we don't expect significat expenses except our precious time 😃. However for professional penetration testing there will be expenses. We suggest that the need for this will be determined by judges and community in the future based on the maturity of our project.
-
-## Accelerator-Z
-We don't see any reasons yet to apply for Accelerator-Z funding. However, nobody can predict the future and it all depends on the success and evolution of our project 😃
+* Extension not published in chrome webstore, only to test on localhost
+* Use together with Zenon-Web3Site
+* Public node of deenutz is used
+* Only for fused accounts
+* .env files for tests

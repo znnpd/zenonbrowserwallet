@@ -1,30 +1,26 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {Box, Drawer} from '@mui/material';
+import {Box, Drawer, Grid, Modal} from '@mui/material';
 import {ChartBar as ChartBarIcon} from '../../icons/chart-bar';
 import {Lock as LockIcon} from '../../icons/lock';
-import {ShoppingBag as ShoppingBagIcon} from '../../icons/shopping-bag';
 import {User as UserIcon} from '../../icons/user';
 import {UserAdd as UserAddIcon} from '../../icons/user-add';
 import {Users as UsersIcon} from '../../icons/users';
 import {NavItem} from './nav-item';
-import {useLocation} from "react-router-dom";
 import {AppAuthentication} from "../../hooks/authenticationHooks";
 import CloseIcon from '@mui/icons-material/Close';
 import {CommonHooks} from "../../hooks/commonHooks";
 import {WalletHooks} from "../../hooks/walletHooks";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export const DashboardSidebar = (props) => {
+
+    const [deleteWalletDialog, setDeleteWalletDialog] = React.useState(false);
     const {open, onClose} = props;
-    const router = useLocation();
     const commonHooks = CommonHooks();
     let auth = AppAuthentication();
-    const lgUp = false;
-    /*const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
-      defaultMatches: true,
-      noSsr: false
-    });*/
 
     useEffect(
         () => {
@@ -32,10 +28,18 @@ export const DashboardSidebar = (props) => {
                 onClose?.();
             }
         },
-        [router.pathname, open, onClose]
+        [open, onClose]
     );
 
     const walletHooks = WalletHooks();
+
+    const deleteWallet = (event) => {
+        event.preventDefault();
+        commonHooks.closeSidebar();
+        auth.doDeleteWallet();
+        setDeleteWalletDialog(false);
+    }
+
 
     const items = [
         {
@@ -74,7 +78,7 @@ export const DashboardSidebar = (props) => {
             icon: (<LockIcon fontSize="small"/>),
             title: 'Delete Wallet',
             authenticated: true,
-            hook: auth.doDeleteWallet
+            hook: () => setDeleteWalletDialog(true)
         },
         {
             href: '/login',
@@ -94,7 +98,7 @@ export const DashboardSidebar = (props) => {
             title: 'Create Wallet',
             authenticated: false
         }
-];
+    ];
 
     const content = (
         <>
@@ -123,11 +127,12 @@ export const DashboardSidebar = (props) => {
         </>
     );
 
-    if (lgUp) {
-        return (
+    return (
+        <>
             <Drawer
                 anchor="left"
-                open
+                onClose={onClose}
+                open={open}
                 PaperProps={{
                     sx: {
                         backgroundColor: 'neutral.900',
@@ -135,30 +140,42 @@ export const DashboardSidebar = (props) => {
                         width: 280
                     }
                 }}
-                variant="permanent"
+                sx={{zIndex: (theme) => theme.zIndex.appBar + 100}}
+                variant="temporary"
             >
                 {content}
             </Drawer>
-        );
-    }
-
-    return (
-        <Drawer
-            anchor="left"
-            onClose={onClose}
-            open={open}
-            PaperProps={{
-                sx: {
-                    backgroundColor: 'neutral.900',
-                    color: '#FFFFFF',
-                    width: 280
-                }
-            }}
-            sx={{zIndex: (theme) => theme.zIndex.appBar + 100}}
-            variant="temporary"
-        >
-            {content}
-        </Drawer>
+            <Modal open={deleteWalletDialog}>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{ minHeight: '100vh', backgroundColor: 'black' }}
+                >
+                    <Grid item xs={3}>
+                        <Typography variant="body2" color="text.primary" align="center">
+                            Do you really want to delete your wallet? Only your seed can recover it!
+                        </Typography>
+                        <Button
+                            onClick={() => setDeleteWalletDialog(false)}
+                            variant="contained"
+                            sx={{mt: 3, mb: 3}}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={(e) => deleteWallet(e)}
+                            variant="contained"
+                            sx={{mt: 3, mb: 2, ml: 30}}
+                        >
+                            Delete
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Modal>
+        </>
     );
 };
 
