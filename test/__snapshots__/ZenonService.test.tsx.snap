@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ZenonService should create a new wallet 1`] = `
+Object {
+  "baseAddress": Any<String>,
+  "crypto": Object {
+    "argon2Params": Object {
+      "salt": Any<String>,
+    },
+    "cipherData": Any<String>,
+    "cipherName": "aes-256-gcm",
+    "kdf": "argon2.IDKey",
+    "nonce": Any<String>,
+  },
+  "timestamp": Any<Number>,
+  "version": 1,
+}
+`;
+
+exports[`ZenonService should import an existing wallet 1`] = `
+Object {
+  "baseAddress": "z1qrlvtahp6qfel40j8hkequ08ypvwk9fsxg5g9r",
+  "crypto": Object {
+    "argon2Params": Object {
+      "salt": Any<String>,
+    },
+    "cipherData": Any<String>,
+    "cipherName": "aes-256-gcm",
+    "kdf": "argon2.IDKey",
+    "nonce": Any<String>,
+  },
+  "timestamp": Any<Number>,
+  "version": 1,
+}
+`;
+
+exports[`ZenonService should read account infos properly 1`] = `
+Object {
+  "accountHeight": Any<Number>,
+  "address": "z1qrlvtahp6qfel40j8hkequ08ypvwk9fsxg5g9r",
+  "balanceInfoMap": Object {
+    "zts1qsrxxxxxxxxxxxxxmrhjll": Object {
+      "balance": Any<Number>,
+      "token": Object {
+        "decimals": 8,
+        "domain": "zenon.network",
+        "isBurnable": true,
+        "isMintable": true,
+        "isUtility": true,
+        "maxSupply": 9007199254740991,
+        "name": "QSR",
+        "owner": "z1qxemdeddedxt0kenxxxxxxxxxxxxxxxxh9amk0",
+        "symbol": "QSR",
+        "tokenStandard": "zts1qsrxxxxxxxxxxxxxmrhjll",
+        "totalSupply": Any<Number>,
+      },
+    },
+    "zts1ydn3h4qw6y67k8hltv0flh": Object {
+      "balance": Any<Number>,
+      "token": Object {
+        "decimals": 16,
+        "domain": "example.com",
+        "isBurnable": true,
+        "isMintable": true,
+        "isUtility": true,
+        "maxSupply": 9223372036854776000,
+        "name": "TEST",
+        "owner": "z1qraay709q07a28jn6arj085sfx8pqmzfmchlwl",
+        "symbol": "TEST",
+        "tokenStandard": "zts1ydn3h4qw6y67k8hltv0flh",
+        "totalSupply": Any<Number>,
+      },
+    },
+    "zts1znnxxxxxxxxxxxxx9z4ulx": Object {
+      "balance": Any<Number>,
+      "token": Object {
+        "decimals": 8,
+        "domain": "zenon.network",
+        "isBurnable": true,
+        "isMintable": true,
+        "isUtility": true,
+        "maxSupply": 9007199254740991,
+        "name": "ZNN",
+        "owner": "z1qxemdeddedxt0kenxxxxxxxxxxxxxxxxh9amk0",
+        "symbol": "ZNN",
+        "tokenStandard": "zts1znnxxxxxxxxxxxxx9z4ulx",
+        "totalSupply": Any<Number>,
+      },
+    },
+  },
+}
+`;
+
+exports[`ZenonService should read transactions properly 1`] = `
+Array [
+  Object {
+    "amount": 1,
+    "blockHeight": 1,
+    "confirmationTimestampUTC": "2022-01-06T20:55:20.000Z",
+    "hash": "be72c7050c1cf44a0b0dce4946d9314556119ef733deb772146a6e1c4d7f3c46",
+    "receiver": "z1qrlvtahp6qfel40j8hkequ08ypvwk9fsxg5g9r",
+    "sender": "z1qq6ff3hwaqa4rgmy5c5mmgzy70ewp7zrhp8trx",
+    "token": "ZNN",
+  },
+]
+`;
+
+exports[`ZenonService should receive derived addresses 1`] = `"z1qpdlnkzaumkaj2wx8h3ecnak5hy35200sqlqu6"`;
