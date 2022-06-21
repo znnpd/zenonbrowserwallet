@@ -13,9 +13,9 @@ There is also a [sample web3 website](https://github.com/znnpd/zenon-web3site.gi
 
 ## Special remarks:
 * The extension not published in chrome webstore, only available as code to test locally
-* By default the [public deeZNNnodez node](public.deeZNNodez.com) is used, can be change in `src/config/default.ts`
+* By default the [public deeZNNnodez node](public.deeZNNodez.com) is used, can be changed in `src/config/default.ts`
 * Sending and receiving transactions works only for fused accounts
-* Check `.env_example` file for needed environment variables for unit tests (which are barely existing as of today... ;)
+* Check `.env_example` file for mandatory environment variables for unit tests (which are barely existing as of today... ;)
 
 ## Warpdrive
 See [here](./docs/warpdrive.md) for original warpdrive submission.
