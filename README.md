@@ -9,7 +9,7 @@ Lightweight browser extension wallet for Zenon NoM similar to metamask with the 
 
 See [here](./docs/components.md) for some more information about the extension components and message flows.
 
-There is also a [sample web3 website](https://github.com/znnpd/zenon-web3site.git) available to test interaction betweenn website and extension, **give it a try!**
+There is also a [sample web3 website](https://github.com/znnpd/zenon-web3site.git) available to test interaction between website and extension, **give it a try!**
 
 ## Special remarks:
 * The extension not published in chrome webstore, only available as code to test locally
