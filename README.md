@@ -6,6 +6,7 @@ Lightweight browser extension wallet for Zenon NoM similar to metamask with the 
 * Send/receive transactions
 * Show balance of all coins
 * Transaction overview
+* Manage trusted web3 websites
 
 See [here](./docs/components.md) for some more information about the extension components and message flows.
 
