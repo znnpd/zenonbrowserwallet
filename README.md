@@ -10,16 +10,16 @@ Lightweight browser extension wallet for Zenon NoM similar to metamask with the 
 
 See [here](./docs/components.md) for some more information about the extension components and message flows.
 
-There is also a [sample web3 website](https://github.com/znnpd/zenon-web3site.git) available to test interaction between website and extension, **give it a try!**
+:rocket: There is also a [sample web3 website](https://github.com/znnpd/zenon-web3site.git) available to test interaction between website and extension, **give it a try!** :rocket:
 
-## Special remarks:
-* The extension not published in chrome webstore, only available as code to test locally
+## Remarks
+* The extension not yet published in chrome webstore, only available as code to test locally
 * By default the [public deeZNNnodez node](public.deeZNNodez.com) is used, can be changed in `src/config/default.ts`
 * Sending and receiving transactions works only for fused accounts
-* Check `.env_example` file for mandatory environment variables for unit tests (which are barely existing as of today... ;)
+* Create `.env` file based on `.env_example` file with mandatory environment variables for unit tests (which are barely existing as of today... ;). Not needed for using the extension!
 
 ## Warpdrive
-See [here](./docs/warpdrive.md) for original warpdrive submission.
+This project was created as Warpdrive submission. Most of the features are implemented in PoC or MVP state. See [here](./docs/warpdrive.md) for original warpdrive submission.
 
 # Installation
 
@@ -27,9 +27,18 @@ See [here](./docs/warpdrive.md) for original warpdrive submission.
 * Latest version of google chrome browser (at least >= version 102)
 * NodeJS 
 
-## Setup
+## Create build
+* `npm run local_extension` creates `extension_build` directory and runs a webpack server (needed for developmentn only).
+
+**Other scripts:**
 * `npm run build` creates a react webapp for local UI testing (normal UI, cannot be used as an extension)
 * `npm run local` starts the local webpack dev server for UI testing in browser (not as extension)
-* `npm run local_extension` creates `extension_build` directory and runs a webpack server (which is not really needed). The directory can be loaded by chrome extension to test it locally
 
+## Install extension locally in chrome
+* `Options` >> `More Tools` >> `Extensions`
+* Enable developer mode
+* `Load unpacked`
+* Choose `extension_build` folder in `zenonbrowserwallet` project
 
+## Use the extension
+Either open it manually from the chrome tab bar or via [sample web3 website](https://github.com/znnpd/zenon-web3site.git)
