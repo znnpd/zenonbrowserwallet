@@ -161,14 +161,14 @@ export const DashboardSidebar = (props) => {
                         <Button
                             onClick={() => setDeleteWalletDialog(false)}
                             variant="contained"
-                            sx={{mt: 3, mb: 3}}
+                            sx={{mt: '8px', mb: 3, ml: 7}}
                         >
                             Cancel
                         </Button>
                         <Button
                             onClick={(e) => deleteWallet(e)}
                             variant="contained"
-                            sx={{mt: 3, mb: 2, ml: 30}}
+                            sx={{mb: 2, ml: 7}}
                         >
                             Delete
                         </Button>
