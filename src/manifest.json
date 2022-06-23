@@ -1,6 +1,7 @@
 {
     "manifest_version": 3,
     "name": "ZenonBrowserWallet",
+    "version": "0.1.0",
     "description": "Connecting to the Zenon NoM from your browser...",
     "action": {
         "default_popup": "/index.html",
@@ -10,15 +11,9 @@
             "128": "icon128.png"
         }
     },
-    "web_accessible_resources": [
-        {
-        "resources": ["content.styles.css"],
-        "matches": []
-        }
-    ],
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlrfaDg6r9xlxsYLf05ev6eGSqfmhG3AVrOpHO+jqsFsXvEANXgWUjJwCF2j/7RBwjz4ER5DDh9vX95r5AW7XRxkA+squD4yTLIZu4/R0mpNm/HA0N7Kiv40Q3WVBMnIKO+UBj/SwchwyJiglXMM6QGncVPJMy3pseLVYJqYd/SgZNW1fHJSX1obV+fBTlFMbSJuZEwC70tq/wRkqlGHL8D8iSAq2ntHH7meODbdAnuSj/Z+OCaTiXMQjudghWUAB8DTMKVNNUkFWVOnKWoIyBAABwTPeW1z06y8lnV4fjhjWioVV0oi1kPW5xppYlRNoNzsekJS8XW0e7VWlInBn3QIDAQAB",
     "permissions": [
         "storage"
-        
     ],
     "content_security_policy": {
         "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
