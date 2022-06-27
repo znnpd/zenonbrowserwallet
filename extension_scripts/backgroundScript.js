@@ -16,14 +16,14 @@ chrome.runtime.onMessage.addListener(
             chrome.storage.local.get(['trustedSites'], function(result) {
                 if (result.trustedSites && JSON.parse(result.trustedSites).map(e => e.toLocaleLowerCase()).includes(sender.origin)) {
                     // approval already existing
-                    chrome.storage.local.get(['mainAddress', 'trustedSite'], function(result) {
+                    chrome.storage.local.get(['baseAddress'], function(result) {
                         sendResponse({
                             direction: 'toWebsite',
                             action: 'CONNECT_WALLET_RESPONSE', 
                             data: {
                                 isSiteTrusted: true,
                                 trustedSite: sender.origin,
-                                mainAddress: result.mainAddress
+                                baseAddress: result.baseAddress
                             },
                             extensionId: chrome.runtime.id
                         });

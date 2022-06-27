@@ -166,7 +166,7 @@ export class ZenonService {
         }
         
         try {
-            block.address = Address.Parse(addressTo);
+            block.toAddress = Address.Parse(addressTo);
         } catch (error) {
             let errorMsg = 'Address "' + addressTo + '" invalid!';
             console.error(errorMsg);
@@ -187,13 +187,13 @@ export class ZenonService {
         let entropy = await KeyFile.Decrypt(wallet, password);
         let keyPair = entropy.getKeyPair();
         
+        
         return this.fastForwardBlock(block, keyPair);
     }
 
     fastForwardBlock = async (block: zenonInterfaces.IAccountBlock, keyPair) => {
         
         block.publicKey = keyPair.publicKey;
-
         const frontier = await this.client.request({
             method: 'ledger.getFrontierAccountBlock',
             params: [block.address.toString()]
@@ -223,13 +223,13 @@ export class ZenonService {
         });
         
         if (required.requiredDifficulty !== 0) {
-            throw new Error(`znn.js is not able to produce plasma using PoW. Please fuse to ${block.address.toString()}`);
+            throw new Error(`ZenonBrowserWallet is not able to produce plasma using PoW. Please fuse to ${block.address.toString()}`);
         }
         
         block.fusedPlasma = required.basePlasma;
         block.hash = block.getHash();
         block.signature = await keyPair.sign(block.hash);
-        
+    
         return await this.client.request({method: 'ledger.publishRawTransaction', params: [block.toJson()]});
     }
 }

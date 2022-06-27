@@ -27,6 +27,7 @@ export const ImportPage = () => {
                     fullWidth
                     name="mnemonic"
                     label="Mnemonic"
+                    type="password"
                     id="mnemonic"
                     autoComplete="you mnemonic seed"
                 />

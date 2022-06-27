@@ -138,7 +138,7 @@ export const WalletPage = () => {
                             send
                         </Button>
                     </Grid>
-                    <Grid item>
+                    {/*<Grid item>
                         <Button
                             fullWidth
                             variant="contained"
@@ -148,7 +148,7 @@ export const WalletPage = () => {
                             receive
                         </Button>
                     </Grid>
-                    {/*<Grid item>
+                    <Grid item>
                         <Button
                             fullWidth
                             variant="contained"

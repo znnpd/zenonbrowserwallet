@@ -26,7 +26,7 @@ export const SiteApproval = (props) => {
     // Handle trustedSites state
     let [trustedSitesState, setTrustedSites] = useState<string[]>([]);
 
-    let mainAddress = walletHook.getAccountInfo().address;
+    let baseAddress = walletHook.getAccountInfo().address;
 
     function trustOrigin(isTrusted: boolean) {
 
@@ -36,10 +36,6 @@ export const SiteApproval = (props) => {
                 // no async processing needed
             });
             setTrustedSites(trustedSitesState);
-
-            chrome.storage.local.set({'mainAddress': mainAddress}, function() {
-                // no async processing needed
-            });
         }
 
         // Send message direct to content script
@@ -49,7 +45,7 @@ export const SiteApproval = (props) => {
             data: {
                 isSiteTrusted: isTrusted,
                 TrustedSite: originSender,
-                mainAddress: mainAddress
+                baseAddress: baseAddress
             },
             extensionId: chrome.runtime.id
         }); // no response expected

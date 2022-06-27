@@ -56,6 +56,9 @@ export function* createWalletSaga(action: IAction<string>) {
         let wallet = yield call(zenonService.createNewWallet, action.payload);
         let walletString = JSON.stringify(wallet);
         localStorage.setItem('wallet', walletString);
+        chrome.storage.local.set({'baseAddress': wallet.baseAddress}, function() {
+            // no async processing needed
+        });
         yield put(storeWalletAction(wallet));
         yield put(refreshWalletAddressAction(wallet.baseAddress));
         //navigate to wallet page
@@ -74,6 +77,9 @@ export function* importExistingWalletSaga(action: IAction<any>) {
         let wallet = yield call(zenonService.importExistingWallet, mnemonic, password);
         let walletString = JSON.stringify(wallet);
         localStorage.setItem('wallet', walletString);
+        chrome.storage.local.set({'baseAddress': wallet.baseAddress}, function() {
+            // no async processing needed
+        });
         yield put(storeWalletAction(wallet));
         yield put(refreshWalletAddressAction(wallet.baseAddress));
         //navigate to wallet page
